@@ -25,6 +25,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :inline => "wget -O - http://gaudi.io/apt/gaudi.gpg.key | sudo apt-key add -"
   config.vm.provision :shell, :inline => "echo \"deb http://gaudi.io/apt/ precise main\" | sudo tee -a /etc/apt/sources.list"                                                                                                                
   config.vm.provision :shell, :inline => "sudo apt-get update"     
-  config.vm.provision :shell, :inline => "sudo apt-get install gaudi -y" 
+  config.vm.provision :shell, :inline => "sudo apt-get install gaudi -y"
+  
+  config.vm.provision :shell, run: "always", :inline => "cd /vagrant && gaudi > guadi.startup.log"
   
 end
